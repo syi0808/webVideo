@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>webRTC tutorial</title>
+  </head>
+  <body>
+    <div>
+      <video id="localVideo" autoplay width="480px"></video>
+    </div>
+    <script>
+      let constraints = { audio: true, video: { width: 1280, height: 720 } };
+
+      navigator.mediaDevices.getUserMedia(constraints).then((mediaStream) => {
+        let video = document.getElementById("localVideo");
+        console.log(mediaStream.getVideoTracks());
+        video.srcObject = mediaStream;
+        video.onloadedmetadata = (e) => {
+          video.play();
+        };
+      });
+    </script>
+  </body>
+</html>
